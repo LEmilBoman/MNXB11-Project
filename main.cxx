@@ -1,8 +1,21 @@
-
 #include <iostream>
-#include <stdio.h>
 #include "read_example_csv.hpp"
+#include <argumentum/argparse.h>
 int main(int argc, char *argv[]) {
+  auto parser{argumentum::argument_parser{}};
+  auto parameters{parser.params()};
+  parser.config().program(argv[0]).description(
+    "Add a description of your program here!");
+  std::string csv_file{};
+  parameters.add_parameter(csv_file, "-f", "--file")
+    .minargs(1)
+    .metavar("WriteTheExpectedTypeHere")
+    .required(true)
+    .help("Write a description of the parameter here for the help text!");
+  if (!parser.parse_args(argc, argv)) {
+    return 0;
+  }
+
   std::cout << "I am just a code template, you need to implement the "
                "functionality you want to use yourself!"
             << std::endl;

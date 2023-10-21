@@ -4,7 +4,7 @@ CXXOPT := -O3
 CXXSTD := -std=c++17
 INCLUDES := -I include -I external/include
 CXXFLAGS := $(CXXWARNINGS) $(CXXSTD) $(CXXOPT) $(INCLUDES)
-LDFLAGS :=
+LDFLAGS := -L external/lib64 -largumentum
 
 .PHONY: all clean
 
@@ -16,7 +16,7 @@ all: main
 #
 # Remove the Example object file when you are done looking at it, it doesn't
 # contribute to the executable!
-main: main.cxx src/Example.o src/read_example_csv.o
+main: main.cxx  src/read_example_csv.o
 	$(CXX) $(CXXFLAGS) -o $@ $^ $(LDFLAGS)
 
 src/%.o: src/%.cxx
