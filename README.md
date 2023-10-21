@@ -25,6 +25,16 @@ Download the header file from https://github.com/ashtum/lazycsv.git and put the 
 $./main --file datasets/csv_example.csv
 ```
 
+### Adding Date
+Date is a header only library which is part of the https://github.com/HowardHinnant/date project. If you want a copy of the entire project clone it into the folder \dependencies.
+
+The Date library consists of the single header file /date/include/date/date.h. 
+
+If you made a clone of the entire project: Copy this file (using  cp) into the /external/include directory. 
+
+If you did not clone the entire project: Download the header file and place it in the
+/external/include directory.
+
 # MNXB11-project-template
 # About
 This folder contains a skeleton for your project that you can use as
