@@ -26,7 +26,7 @@ int main(int argc, char *argv[]) {
   std::cout << "With a good CLI library, we could use the command line "
                "arguments to make a useful program."
             << std::endl;
-  ExampleCsvReader csvReader = ExampleCsvReader("datasets/csv_example.csv");
+  ExampleCsvReader csvReader = ExampleCsvReader(csv_file); //use the relative path here as example "datasets/csv_example.csv"
   csvReader.ReadCsv();
 
   return 0;

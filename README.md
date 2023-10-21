@@ -15,8 +15,15 @@ go into this newly created folder and run the following (dependencies in the bel
 \\-cmake ../../dependencies/argumentum/ -DCMAKE_INSTALL_PREFIX=../../external/
 install it
 \\make install
+### Adding lazycsv as a dependancy
 
+Create a folder for external dependancies external/include if it doesnt exist yet. Lazycsv is a header only library consisting of a single header lazycsv.hpp.
+Download the header file from https://github.com/ashtum/lazycsv.git and put the header file into the external/include folder.
 
+### Run the executabel
+```
+$./main --file datasets/csv_example.csv
+```
 
 # MNXB11-project-template
 # About

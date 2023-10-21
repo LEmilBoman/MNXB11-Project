@@ -40,6 +40,8 @@ build/*
 # Resulting ROOT files should not be in git
 results/*
 
+dependencies/*
+
 # Don't add the argumentum library to git
 argumentum*
 
