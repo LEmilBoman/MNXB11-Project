@@ -1,3 +1,23 @@
+
+<> (unsure what we are going to keep from the old skeleton so i will create this new section to have something to work with)
+## adding external software libraries
+Your location should be the root of the project
+create the the build, external and dependencies folder (the dependencies name is optional. this is just a folder to clone external libraries into)
+\\ mkdir build external dependencies
+
+
+### argumentum
+go to dependencies and clone the following (or to go to https://github.com/mmahnic/argumentum to find other adresses if you do not use ssh)
+\\ git clone git@github.com:mmahnic/argumentum.git
+go into the build folder and create a folder for the argumentum build
+\\mkdir argumentum
+go into this newly created folder and run the following (dependencies in the below code will need to be changed to the name of the folder you chose above if you chose a different name)
+\\-cmake ../../dependencies/argumentum/ -DCMAKE_INSTALL_PREFIX=../../external/
+install it
+\\make install
+
+
+
 # MNXB11-project-template
 # About
 This folder contains a skeleton for your project that you can use as
