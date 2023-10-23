@@ -1,0 +1,2 @@
+2023-10-13: EB: Added shell script for cleaning datasets: datasets/cleanData.sh .
+                Added shell script for extracting datasets containing days with any negative temperatures from cleaned datasets: negTempDays.sh .
