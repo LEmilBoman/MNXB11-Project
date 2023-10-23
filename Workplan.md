@@ -10,7 +10,7 @@ Setup: Follow instructions in "Homework Tutorial 8 to Tutorial 11"
 Dataset:
     
 Project parts:
-    Data Preparation/Cleanup
+    Data Preparation/Cleanup: Emil makes bash script.
     1:
       Data Extraction
       Data Analysis
