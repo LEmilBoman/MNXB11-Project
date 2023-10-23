@@ -2,8 +2,8 @@
 
 #script for cleaning smhi-opendata csv files. NOTE: Run this script inside the dataset directory (containing the csv file to be cleaned).
 
-#Add the file names of the datasets to be treated to the list. Format: '<name>'
-listDatasets=()
+#Give each file name as an input to the script. Inputs are stored in the list below.
+listDatasets=( "$@" )
 
 #For each file in the list: 1. Extract the first 3 ; separated columns (containing date;time;temperature) into a temp-file
 #                           2. Count the number of lines untill the data starts
