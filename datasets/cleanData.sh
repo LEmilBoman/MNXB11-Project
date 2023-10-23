@@ -13,6 +13,6 @@ for list in "${listDatasets[@]}"; do
   cut -d';' -f1-3 $list >> ${list/.csv/_temp.csv}
   lineStart=$(grep -n "Datum;Tid (UTC);Lufttemperatur" ${list/.csv/_temp.csv} | cut -d':' -f1)
   #echo "+$lineStart"
-  tail -n "+$lineStart" ${list/.csv/_temp.csv} | sed 's/;/,/' >> ${list/.csv/_clean.csv}
+  tail -n "+$lineStart" ${list/.csv/_temp.csv} | sed 's/;/,/g' >> ${list/.csv/_clean.csv}
   rm ${list/.csv/_temp.csv}
 done
