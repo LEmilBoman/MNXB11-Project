@@ -19,9 +19,13 @@ Project parts:
                      Calculate relative change over time: (numb. WD in Lund/numb. WD in Luleå), (numb. WD in Uppsala/numb. WD in Luleå)
       Figure Generation: Plot with number of winterdays per year from 1964-2022 for all 3 cities, together with the respective moving average.
                          Plot with relative change over time for both Lund and Uppsala.
-    Pavel: Look into Temperature delta between southern most avalable and northern most avalable city (Lund and Lulea).
+    Pavel: Look into Temperature delta between southern most avalable and northern most available city (Lund and Lulea).
       Data extraction: Use cleanup Bash script on data for both cities. Write a different script to find a common time interval for both cities.
-      Data Analysis/Figure Generation: Construct plot for the average temperatuere over the year for the chosen time period for each of the cities. Find the delta of the temperature over the year and make a plot of the delta. Possibly do the same over smaller chunks of time if there exist a noticable change over time.
+      Data Analysis/Figure Generation: Construct plot for the average temperature over the year for the chosen time period for each of the cities. Find the delta of the temperature over the year and make a plot of the delta. Possibly do the same over smaller chunks of time if there exist a noticable change over time.
+    Henrik: Find warmest and coldest days according to 3 different datasets Lund, Uppsala and Luleå
+      Data Extraction clean up with script and find which time periods which all 3 datasets have in common. Remove data from different locations.
+      Data Analysis find out which days are the coldest and warmest for each year. Make a guess for which day is likely to be the hottest and coldest. compare the 3 different datasets
+      Figure Generation Show the hottest and coldest days and show the differences between the 3 datasets. Mark the days that are the most likely to be hot or cold.
     2:
       Data Extraction
       Data Analysis
