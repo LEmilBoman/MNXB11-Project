@@ -19,6 +19,9 @@ Project parts:
                      Calculate relative change over time: (numb. WD in Lund/numb. WD in Luleå), (numb. WD in Uppsala/numb. WD in Luleå)
       Figure Generation: Plot with number of winterdays per year from 1964-2022 for all 3 cities, together with the respective moving average.
                          Plot with relative change over time for both Lund and Uppsala.
+    Pavel: Look into Temperature delta between southern most avalable and northern most avalable city (Lund and Lulea).
+      Data extraction: Use cleanup Bash script on data for both cities. Write a different script to find a common time interval for both cities.
+      Data Analysis/Figure Generation: Construct plot for the average temperatuere over the year for the chosen time period for each of the cities. Find the delta of the temperature over the year and make a plot of the delta. Possibly do the same over smaller chunks of time if there exist a noticable change over time.
     2:
       Data Extraction
       Data Analysis
