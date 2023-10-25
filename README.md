@@ -64,6 +64,11 @@ The script changes the ";"-seperation to ","-separation.
 ## Pre c++ processing for the subproject "Compare number of winter days per year in Lund, Uppsala, and Luleå".
 Inside the /dataset directory there is a bash script called "negTempDays.sh", which extracts all days with any negative temperatures from cleaned datasets, starting from 1964. To use it: Run the script giving the name of each cleaned dataset file as input. The script generates a new csv dataset for each input with the same name as the input file, but with the addition "_neg" before .csv .
 
+#C++ data processing and plot generation
+
+## C++ data processing and plot generation for the subproject "Compare number of winter days per year in Lund, Uppsala, and Luleå".
+winterdays.cxx:
+
 # MNXB11-project-template
 # About
 This folder contains a skeleton for your project that you can use as
