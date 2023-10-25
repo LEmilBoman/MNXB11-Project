@@ -3,36 +3,38 @@
 
 ## adding external software libraries
 
-You can either run our small install script or install the libraries manually. To use our script type 
-
-./dependency_install.sh
-
-else if you want to do it manually follow below instructions.
+You can either run our small install script or install the libraries manually. 
 
 Your location should be the root of the project.
 
+To use our script type 
+```
+./dependency_install.sh
+```
+else if you want to do it manually follow below instructions.
+
 create the the build, external and dependencies folder (the dependencies name is optional. This is just a folder to clone external libraries into)
-
+```
 mkdir build external dependencies
-
+```
 
 ### installing argumentum
 Go to dependencies and clone the following (or to go to https://github.com/mmahnic/argumentum to find other adresses if you do not use ssh)
-
+```
 git clone git@github.com:mmahnic/argumentum.git
-
+```
 Go into the build folder and create a folder for the argumentum build
-
+```
 mkdir argumentum
-
+```
 Go into this newly created folder and run the following (dependencies in the below code will need to be changed to the name of the folder you chose above if you chose a different name)
-
+```
 -cmake ../../dependencies/argumentum/ -DCMAKE_INSTALL_PREFIX=../../external/
-
+```
 install it
-
+```
 make install
-
+```
 ### Adding lazycsv as a dependency
 
 Create a folder for external dependencies external/include if it doesnt exist yet. Lazycsv is a header only library consisting of a single header lazycsv.hpp.
