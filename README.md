@@ -1,5 +1,5 @@
 
-<!-- (unsure what we are going to keep from the old skeleton so i will create this new section to have something to work with) --!>
+<!--unsure what we are going to keep from the old skeleton so i will create this new section to have something to work with -->
 
 ## adding external software libraries
 Your location should be the root of the project
