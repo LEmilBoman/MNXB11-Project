@@ -6,7 +6,7 @@ Your location should be the root of the project
 
 create the the build, external and dependencies folder (the dependencies name is optional. this is just a folder to clone external libraries into)
 
-\mkdir build external dependencies
+mkdir build external dependencies
 
 
 ### argumentum
