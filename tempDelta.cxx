@@ -132,7 +132,28 @@ std::map<date::year_month,double> GetTemperatureDelta(){
     return(delta);
 }
 
-
+std::map<date::month,double> GetAverageTotalDeltaByMonth(){
+    std::map<date::year_month,double> tempDelta = GetTemperatureDelta();
+    std::map<date::month,double> totalDeltaByMonth;
+    std::map<date::month,int> readingsByMonth;
+    for (const auto cell:tempDelta){
+        date::month currentMonth = cell.first.month();
+        if (totalDeltaByMonth.count(currentMonth) == 0){
+            totalDeltaByMonth.insert({currentMonth, cell.second});
+            readingsByMonth.insert({currentMonth,1});
+        }
+        else{
+            totalDeltaByMonth[currentMonth]+=cell.second;
+            readingsByMonth[currentMonth]++;
+        }
+    }
+    std::map<date::month,double> deltaByMonth;
+    for (const auto cell:totalDeltaByMonth){
+        float averageDelta = totalDeltaByMonth[cell.first]/readingsByMonth[cell.first];
+        deltaByMonth.insert({cell.first,averageDelta});
+    }
+    return(deltaByMonth);
+}
 
 void PlotDelta(){
     std::map<date::year_month,double> delta = GetTemperatureDelta();
@@ -152,6 +173,28 @@ void PlotDelta(){
     graph->SetFillColor(40);
     graph->Draw("AB");
 }
+
+void PlotDeltaByMonth(){
+    std::map<date::month,double> deltaByMonth = GetAverageTotalDeltaByMonth();
+     int entryAmount = deltaByMonth.size();
+    double monthTemp[entryAmount];
+    int counter = 0;
+    for (const auto cell:deltaByMonth){
+        std::cout<<cell.second<<std::endl;
+        monthTemp[counter] = cell.second;
+        counter++;
+    }
+    TCanvas* canvas = new TCanvas("canvas", "Graph");
+    double xAxis[12] {1,2,3,4,5,6,7,8,9,10,11,12};
+    auto graph = new TGraph(12,xAxis, monthTemp);
+    graph->SetTitle("Average temperature difference by month");
+    graph->GetYaxis()->SetTitle("Average Temperature Difference, Degrees");
+    graph->GetXaxis()->SetTitle("Month");
+    graph->SetFillColor(40);
+    graph->Draw("AB");
+
+}
+
 //2021-12-23
 //0123456789
 
