@@ -2,6 +2,7 @@
 #include "external/include/lazycsv.hpp"
 #include "external/include/argumentum/argparse.h"
 #include "external/include/date.h"
+#include <sstream>
 #include <string>
 #include <vector>
 #include <map>
@@ -54,4 +55,20 @@ std::map<std::string,double> averageTemperaturePerDay(){
     }
     return(averageTemp);
 }
+
+std::map<date::year_month_day, double> averageTemperaturePerDayFormatted(){
+    std::map<date::year_month_day,double> averageTemp;
+    std::map<std::string,double> toConvert = averageTemperaturePerDay();
+    for (const auto cell:toConvert){
+        std::string date {cell.first};
+        int year = std::stoi(date.substr(0,4));
+        int month = std::stoi(date.substr(5,2));
+        int day = std::stoi(date.substr(8,2));
+        date::year_month_day convertedDate = date::year{year}/month/day;
+        averageTemp.insert({convertedDate,cell.second});
+    }
+    return(averageTemp);
+}
+//2021-12-23
+//0123456789
 

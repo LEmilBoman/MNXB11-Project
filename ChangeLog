@@ -13,3 +13,4 @@
 					First for finding the number of readings for a single day.
 					Second finds the sum of all temperatures recorded during the day
 					The first calculates the average temperature over the day using the previouse two functions.
+					Added a function to convert the string dates in the map into the date::year_month:day format
