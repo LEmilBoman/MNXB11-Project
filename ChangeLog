@@ -1,4 +1,10 @@
-2023-10-13: EB: Added shell script for cleaning datasets: datasets/cleanData.sh .
+2023-10-23: EB: Added shell script for cleaning datasets: datasets/cleanData.sh .
                 Added shell script for extracting datasets containing days with any negative temperatures from cleaned datasets: negTempDays.sh .
 2023-10-25: PO: Added a shell script to install dependencies.
                 Added a shell script to cleaned data based on provided years
+            EB: Added winterdays.cxx which contains methods for:
+			        Taking 3 csv files containing datasets and a list of corresponding city names. 
+			        Generating histograms for the number of winterdays per year
+			        Generating histograms for the relative number of winterdays for the first two datasets, with the third dataset as the reference.
+			        Ploting the histograms for number of winterdays together.
+			        Ploting the histograms for the relative number of winterdays seperatly.
