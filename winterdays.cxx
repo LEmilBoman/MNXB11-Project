@@ -54,20 +54,24 @@ void winterday_hist_draw(std::vector<TH1I*> hists, std::vector<TH1D*> move_avgs)
   TLegend* leg1 = new TLegend(0.1,0.7,0.48,0.9);
   leg1->SetHeader("Number of Winterdays per year","C");
   for (auto h : hists){
-    h->GetXaxis()->SetRangeUser(1966,2021);
-    h->GetXaxis()->SetRange(1966,2021);
+    h->GetXaxis()->SetRangeUser(1964,2023);
+    h->GetXaxis()->SetRange(1964,2023);
     h->GetYaxis()->SetRangeUser(0,250);
     h->SetStats(0);
     h->Draw("SAMES PFC PMC");
     leg1->AddEntry(h,h->GetName(),"f");
   }
+  gPad->RedrawAxis();
   for (auto a : move_avgs){
+    a->GetXaxis()->SetRangeUser(1966,2021);
+    a->GetXaxis()->SetRange(1966,2021);
+    a->GetYaxis()->SetRangeUser(0,250);
     a->SetLineWidth(5);
     a->SetStats(0);
     a->Draw("SAMES C PLC PMC");
   }
   leg1->Draw();
-  canv1->SaveAs("test_hist.pdf");
+  canv1->SaveAs("winterday_hist.pdf");
 }
 
 void rel_winterday_hist_gen(std::map<Int_t, Int_t> map_numer,std::map<Int_t, Int_t> map_denom,const char* header_title,const char* utput_file){
