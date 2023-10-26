@@ -15,3 +15,5 @@
 					The first calculates the average temperature over the day using the previouse two functions.
 					Added a function to convert the string dates in the map into the date::year_month:day format
 					Added a function returning average temperature per month over the years
+					Added code to plot average monthly temperature
+					Made 2 plots of monthlyAverage temperature

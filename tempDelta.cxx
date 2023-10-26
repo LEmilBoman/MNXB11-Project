@@ -7,11 +7,12 @@
 #include <vector>
 #include <map>
 #include <TH1.h>
+#include <TGraph.h>
 #include <TCanvas.h>
 #include <TLegend.h>
 
-std::map<std::string,int> measurnmentsPerDay(){
-    std::string file = "datasets/smhi-opendata_1_53430_20231007_155558_Lund_clean_cut.csv";
+std::map<std::string,int> measurnmentsPerDay(std::string file){
+    //std::string file = "datasets/smhi-opendata_1_53430_20231007_155558_Lund_clean_cut.csv";
     lazycsv::parser parser{file};
     std::map<std::string,int> measurnmentsPerDay;
     for (const auto row:parser){
@@ -27,8 +28,8 @@ std::map<std::string,int> measurnmentsPerDay(){
     return(measurnmentsPerDay);
 }
 
-std::map<std::string,double> totalTemperaturePerDay(){
-    std::string file = "datasets/smhi-opendata_1_53430_20231007_155558_Lund_clean_cut.csv";
+std::map<std::string,double> totalTemperaturePerDay(std::string file){
+    //std::string file = "datasets/smhi-opendata_1_53430_20231007_155558_Lund_clean_cut.csv";
     lazycsv::parser parser{file};
     std::map<std::string,double> totalTemperaturePerDay;
     for (const auto row:parser){
@@ -46,9 +47,9 @@ std::map<std::string,double> totalTemperaturePerDay(){
     return(totalTemperaturePerDay);
 }
 
-std::map<std::string,double> averageTemperaturePerDay(){
-    std::map<std::string,int> measurnmentAmount = measurnmentsPerDay();
-    std::map<std::string,double> totalTemperature = totalTemperaturePerDay();
+std::map<std::string,double> averageTemperaturePerDay(std::string file){
+    std::map<std::string,int> measurnmentAmount = measurnmentsPerDay(file);
+    std::map<std::string,double> totalTemperature = totalTemperaturePerDay(file);
     std::map<std::string,double> averageTemp;
     for (const auto day:measurnmentAmount){
         averageTemp.insert({day.first, totalTemperature[day.first]/day.second});
@@ -56,9 +57,9 @@ std::map<std::string,double> averageTemperaturePerDay(){
     return(averageTemp);
 }
 
-std::map<date::year_month_day, double> averageTemperaturePerDayFormatted(){
+std::map<date::year_month_day, double> averageTemperaturePerDayFormatted(std::string file){
     std::map<date::year_month_day,double> averageTemp;
-    std::map<std::string,double> toConvert = averageTemperaturePerDay();
+    std::map<std::string,double> toConvert = averageTemperaturePerDay(file);
     for (const auto cell:toConvert){
         std::string date {cell.first};
         int year = std::stoi(date.substr(0,4));
@@ -70,11 +71,11 @@ std::map<date::year_month_day, double> averageTemperaturePerDayFormatted(){
     return(averageTemp);
 }
 
-std::map<date::year_month, double> avergeTempearaturePerMonth(){
+std::map<date::year_month, double> avergeTempearaturePerMonth(std::string file){
     std::map<date::year_month, double> totalTemp;
     std::map<date::year_month, int> daysPerMonth;
     std::map<date::year_month, double> averageTemp;
-    std::map<date::year_month_day,double> ymd = averageTemperaturePerDayFormatted();
+    std::map<date::year_month_day,double> ymd = averageTemperaturePerDayFormatted(file);
     
     for (const auto cell:ymd){
         date::year_month ymDate = cell.first.year()/cell.first.month();
@@ -96,6 +97,26 @@ std::map<date::year_month, double> avergeTempearaturePerMonth(){
         averageTemp.insert({ymDate,averageTempValue});
     }
     return(averageTemp);
+}
+
+void PlotData(std::string file){
+    std::map<date::year_month, double> ymMap = avergeTempearaturePerMonth(file);
+    int entryAmount = ymMap.size();
+    std::cout<<entryAmount<<std::endl;
+    double monthTemp[entryAmount];
+    int counter = 0;
+    for (const auto cell:ymMap){
+        std::cout<<cell.second<<std::endl;
+        monthTemp[counter] = cell.second;
+        counter++;
+    }
+    TCanvas* canvas = new TCanvas("canvas", "Graph");
+    auto graph = new TGraph(entryAmount, monthTemp);
+    graph->SetTitle("Graph of month average temperature over the years.");
+    graph->GetYaxis()->SetTitle("Average Temperature");
+    graph->GetXaxis()->SetTitle("Month Since 1949-01-01.");
+    graph->SetFillColor(40);
+    graph->Draw("AB");
 }
 //2021-12-23
 //0123456789
