@@ -69,6 +69,34 @@ std::map<date::year_month_day, double> averageTemperaturePerDayFormatted(){
     }
     return(averageTemp);
 }
+
+std::map<date::year_month, double> avergeTempearaturePerMonth(){
+    std::map<date::year_month, double> totalTemp;
+    std::map<date::year_month, int> daysPerMonth;
+    std::map<date::year_month, double> averageTemp;
+    std::map<date::year_month_day,double> ymd = averageTemperaturePerDayFormatted();
+    
+    for (const auto cell:ymd){
+        date::year_month ymDate = cell.first.year()/cell.first.month();
+        if (totalTemp.count(ymDate)==0){
+            totalTemp.insert({ymDate,cell.second});
+            daysPerMonth.insert({ymDate,1});
+        }
+        else{
+            totalTemp[ymDate]+=cell.second;
+            daysPerMonth[ymDate]++;
+        }
+    }
+
+    for (const auto cell:totalTemp){
+        date::year_month ymDate = cell.first;
+        int dayCount = daysPerMonth[ymDate];
+        double tempTotal = cell.second;
+        double averageTempValue = tempTotal/dayCount;
+        averageTemp.insert({ymDate,averageTempValue});
+    }
+    return(averageTemp);
+}
 //2021-12-23
 //0123456789
 
