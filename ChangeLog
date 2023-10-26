@@ -8,3 +8,8 @@
 			        Generating histograms for the relative number of winterdays for the first two datasets, with the third dataset as the reference.
 			        Ploting the histograms for number of winterdays together.
 			        Ploting the histograms for the relative number of winterdays seperatly.
+2023-10-26: PO: Started working on the subproject and added a C++ analysis file with.
+					Wrote 3 function, to read the contents of the csv and convert it to a hashmap
+					First for finding the number of readings for a single day.
+					Second finds the sum of all temperatures recorded during the day
+					The first calculates the average temperature over the day using the previouse two functions.
