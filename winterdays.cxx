@@ -77,9 +77,9 @@ void winterday_hist_draw(std::vector<TH1I*> hists, std::vector<TH1D*> move_avgs)
 void rel_winterday_hist_gen(std::map<Int_t, Int_t> map_numer,std::map<Int_t, Int_t> map_denom,const char* header_title,const char* utput_file){
 
   TCanvas* canv2 = new TCanvas("canv2", "Title", 1500, 1000);
-  TLegend* leg1 = new TLegend(0.1,0.7,0.48,0.9);
-  leg1->SetHeader(header_title,"C");
-  TH1D* h = new TH1D("",";year;# WD",2023,1,2023);
+  TLegend* leg1 = new TLegend(0.1,0.8,0.48,0.9);
+  leg1->SetHeader("","C");
+  TH1D* h = new TH1D("",";year;Relative Number of Winterdays",2023,1,2023);
 
   for (int bin =1964; bin<= 2023; ++bin){
     h->SetBinContent(bin, map_numer[bin]/(double)map_denom[bin]);
@@ -91,7 +91,7 @@ void rel_winterday_hist_gen(std::map<Int_t, Int_t> map_numer,std::map<Int_t, Int
   h->SetStats(0);
 
   h->Draw("SAMES PFC PMC");
-  leg1->AddEntry(h,"","f");
+  leg1->AddEntry(h,header_title,"f");
   leg1->Draw();
   canv2->SaveAs(utput_file);  
 }    
@@ -123,14 +123,14 @@ int main(int argc, char *argv[]) {
   std::map<int, int> city2_wd_map = winterday_map(csv_files[1],24.0);
   std::map<int, int> city3_wd_map = winterday_map(csv_files[2],24.0);
   
-  TH1I* city1_hist = new TH1I(city_names[0].c_str(),";year;# WD",2023,1,2023);
-  TH1D* city1_move_avg = new TH1D("Lund move avg",";year;# WD",2023,1,2023);
+  TH1I* city1_hist = new TH1I(city_names[0].c_str(),";year;Number of Winterdays",2023,1,2023);
+  TH1D* city1_move_avg = new TH1D("Lund move avg",";year;Number of Winterdays",2023,1,2023);
 
-  TH1I* city2_hist = new TH1I(city_names[1].c_str(),";year;# WD",2023,1,2023);
-  TH1D* city2_move_avg = new TH1D("Uppsala move avg",";year;# WD",2023,1,2023);
+  TH1I* city2_hist = new TH1I(city_names[1].c_str(),";year;Number of Winterdays",2023,1,2023);
+  TH1D* city2_move_avg = new TH1D("Uppsala move avg",";year;Number of Winterdays",2023,1,2023);
 
-  TH1I* city3_hist = new TH1I(city_names[2].c_str(),";year;# WD",2023,1,2023);
-  TH1D* city3_move_avg = new TH1D("Luleaa move avg",";year;# WD",2023,1,2023);
+  TH1I* city3_hist = new TH1I(city_names[2].c_str(),";year;Number of Winterdays",2023,1,2023);
+  TH1D* city3_move_avg = new TH1D("Luleaa move avg",";year;Number of Winterdays",2023,1,2023);
 
   winterday_hist_fill(city1_hist,city1_move_avg,city1_wd_map);
   winterday_hist_fill(city2_hist,city2_move_avg,city2_wd_map);
