@@ -69,7 +69,17 @@ Inside the /dataset directory there is a bash script called "negTempDays.sh", wh
 #C++ data processing and plot generation
 
 ## C++ data processing and plot generation for the subproject "Compare number of winter days per year in Lund, Uppsala, and Luleå".
-winterdays.cxx:
+winterdays: Time period treated: Data between 1964 and 2022 is treated.
+            Space-Separated CLI: The names (with paths) for three csv files containing temperature data, and the three names that should be used as labels for the datasets.
+                                  NOTE: the datasets should be given in number of winterdays order, beginning with the set with the lowest number of winterdays per year. 
+                                  This is in order for larger histograms not to cover smaller ones.
+                                  NOTE: The order of the data files and the order of the corresponding names must be the same.
+            Data Processing: The number of winterdays per year is calculated (the condition for a winterday is that the average temperature should be below zero C).
+                             The simple moving average is calculated using centralized 5 year intervalls. 
+                             The relative number of winterdays per for the first two datasets are also calculated, using the third dataset as the baseline.
+            Plot Generation: The data is stored in histograms and ploted. The number of winterday histograms with corresponding moving averages are plotted together. 
+                             The relative number of winterdays histograms are ploted alone. 
+            
 
 # MNXB11-project-template
 # About
