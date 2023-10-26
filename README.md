@@ -69,7 +69,7 @@ Inside the /dataset directory there is a bash script called "negTempDays.sh", wh
 #C++ data processing and plot generation
 
 ## C++ data processing and plot generation for the subproject "Compare number of winter days per year in Lund, Uppsala, and Luleå".
-winterdays: Time period treated: Data between 1964 and 2022 is treated.
+winterdays: Time period treated: Data between 1964 and 2022 is ploted.
             Space-Separated CLI: The names (with paths) for three csv files containing temperature data, and the three names that should be used as labels for the datasets.
                                   NOTE: the datasets should be given in number of winterdays order, beginning with the set with the lowest number of winterdays per year. 
                                   This is in order for larger histograms not to cover smaller ones.
