@@ -17,3 +17,5 @@
 					Added a function returning average temperature per month over the years
 					Added code to plot average monthly temperature
 					Made 2 plots of monthlyAverage temperature
+					Added a function that calculates the delta of two datasets and returns it a year_month map.
+					Made a plot for the delta of temperature between Lund and Lulea

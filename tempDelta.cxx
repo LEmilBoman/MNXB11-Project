@@ -118,6 +118,40 @@ void PlotData(std::string file){
     graph->SetFillColor(40);
     graph->Draw("AB");
 }
+
+std::map<date::year_month,double> GetTemperatureDelta(){
+    std::string lundData = "datasets/smhi-opendata_1_53430_20231007_155558_Lund_clean_cut.csv";
+    std::string luleaData = "datasets/smhi-opendata_1_162860_20231007_155220_Lulea_clean_cut.csv";
+    std::map<date::year_month,double> lundYmMap = avergeTempearaturePerMonth(lundData);
+    std::map<date::year_month,double> luleaYmMap = avergeTempearaturePerMonth(luleaData);
+    std::map<date::year_month,double> delta;
+    for (const auto cell:lundYmMap){
+        float currentDelta = lundYmMap[cell.first] - luleaYmMap[cell.first];
+        delta.insert({cell.first,currentDelta});
+    }
+    return(delta);
+}
+
+
+
+void PlotDelta(){
+    std::map<date::year_month,double> delta = GetTemperatureDelta();
+    int entryAmount = delta.size();
+    double monthTemp[entryAmount];
+    int counter = 0;
+    for (const auto cell:delta){
+        std::cout<<cell.second<<std::endl;
+        monthTemp[counter] = cell.second;
+        counter++;
+    }
+    TCanvas* canvas = new TCanvas("canvas", "Graph");
+    auto graph = new TGraph(entryAmount, monthTemp);
+    graph->SetTitle("Average monthly temperature difference.");
+    graph->GetYaxis()->SetTitle("Average Temperature Difference");
+    graph->GetXaxis()->SetTitle("Month Since 1949-01-01.");
+    graph->SetFillColor(40);
+    graph->Draw("AB");
+}
 //2021-12-23
 //0123456789
 
