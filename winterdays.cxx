@@ -12,7 +12,7 @@
 using namespace date;
 using namespace std::chrono;
 
-std::map<int, int> winterday_map(std::string csv_file, double numb_measurments){
+std::map<int, int> winterday_map(std::string csv_file){
   //Parser over the csv file and index for all variables of interest.
   lazycsv::parser lazyParser{csv_file};
   auto d_index = lazyParser.index_of("date");
@@ -30,8 +30,6 @@ std::map<int, int> winterday_map(std::string csv_file, double numb_measurments){
   }
 
   for (auto& entry : date_temperature_map){
-    double temp{entry.second};
-    entry.second = temp/numb_measurments;
     if (entry.second < 0.0){
       year_winterday_map[stoi(entry.first.substr(0,4))] += 1;
     }
@@ -119,9 +117,9 @@ int main(int argc, char *argv[]) {
   
   
 
-  std::map<int, int> city1_wd_map = winterday_map(csv_files[0],2.0);
-  std::map<int, int> city2_wd_map = winterday_map(csv_files[1],24.0);
-  std::map<int, int> city3_wd_map = winterday_map(csv_files[2],24.0);
+  std::map<int, int> city1_wd_map = winterday_map(csv_files[0]);
+  std::map<int, int> city2_wd_map = winterday_map(csv_files[1]);
+  std::map<int, int> city3_wd_map = winterday_map(csv_files[2]);
   
   TH1I* city1_hist = new TH1I(city_names[0].c_str(),";year;Number of Winterdays",2023,1,2023);
   TH1D* city1_move_avg = new TH1D("Lund move avg",";year;Number of Winterdays",2023,1,2023);
