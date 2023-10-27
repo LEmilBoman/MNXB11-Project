@@ -26,4 +26,4 @@ winterdays: winterdays.cxx
 	$(CXX) $(CXXFLAGS) -o $@ $^ $(LDFLAGS)
 
 clean:
-	rm -v src/*.o main
+	rm -v src/*.o main winterdays
