@@ -1,9 +1,9 @@
 #ifndef TEMPDELTA_H   
 #define TEMPDELTA_H
 #include <iostream>
-#include "../external/include/lazycsv.hpp"
-#include "../external/include/argumentum/argparse.h"
-#include "../external/include/date.h"
+#include <lazycsv.hpp>
+#include <argumentum/argparse.h>
+#include <date.h>
 #include <sstream>
 #include <string>
 #include <vector>

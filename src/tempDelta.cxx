@@ -1,7 +1,7 @@
 #include <iostream>
-#include "../external/include/lazycsv.hpp"
-#include "../external/include/argumentum/argparse.h"
-#include "../external/include/date.h"
+#include <lazycsv.hpp>
+#include <argumentum/argparse.h>
+#include <date.h>
 #include <sstream>
 #include <string>
 #include <vector>
@@ -52,7 +52,7 @@ std::map<std::string,double> averageTemperaturePerDay(std::string file){
     std::map<std::string,int> measurnmentAmount = measurnmentsPerDay(file);
     std::map<std::string,double> totalTemperature = totalTemperaturePerDay(file);
     std::map<std::string,double> averageTemp;
-    for (const auto day:measurnmentAmount){
+    for (const auto &day:measurnmentAmount){
         averageTemp.insert({day.first, totalTemperature[day.first]/day.second});
     }
     return(averageTemp);
@@ -61,7 +61,7 @@ std::map<std::string,double> averageTemperaturePerDay(std::string file){
 std::map<date::year_month_day, double> averageTemperaturePerDayFormatted(std::string file){
     std::map<date::year_month_day,double> averageTemp;
     std::map<std::string,double> toConvert = averageTemperaturePerDay(file);
-    for (const auto cell:toConvert){
+    for (const auto &cell:toConvert){
         std::string date {cell.first};
         int year = std::stoi(date.substr(0,4));
         int month = std::stoi(date.substr(5,2));
@@ -111,13 +111,16 @@ void PlotData(std::string file){
         monthTemp[counter] = cell.second;
         counter++;
     }
-    TCanvas* canvas = new TCanvas("canvas", "Graph");
+    TCanvas* canv1 = new TCanvas("canv1", "Title", 1500, 1000);
     auto graph = new TGraph(entryAmount, monthTemp);
     graph->SetTitle("Graph of month average temperature over the years.");
     graph->GetYaxis()->SetTitle("Average Temperature");
     graph->GetXaxis()->SetTitle("Month Since 1949-01-01.");
     graph->SetFillColor(40);
     graph->Draw("AB");
+    std::string save = file.substr(file.find('/') + 1,file.find('.')) + ".pdf";
+    canv1->SaveAs(save.data());
+
 }
 
 std::map<date::year_month,double> GetTemperatureDelta(std::string firstFile, std::string secondFile){
@@ -166,13 +169,14 @@ void PlotDelta(std::string firstFile, std::string secondFile){
         monthTemp[counter] = cell.second;
         counter++;
     }
-    TCanvas* canvas = new TCanvas("canvas", "Graph");
+    TCanvas* canv1 = new TCanvas("canv1", "Title", 1500, 1000);
     auto graph = new TGraph(entryAmount, monthTemp);
     graph->SetTitle("Average monthly temperature difference.");
     graph->GetYaxis()->SetTitle("Average Temperature Difference");
     graph->GetXaxis()->SetTitle("Month Since 1949-01-01.");
     graph->SetFillColor(40);
     graph->Draw("AB");
+    canv1->SaveAs("DeltaOverTheYears.pdf");
 }
 
 void PlotDeltaByMonth(std::string firstFile, std::string secondFile){
@@ -185,14 +189,15 @@ void PlotDeltaByMonth(std::string firstFile, std::string secondFile){
         monthTemp[counter] = cell.second;
         counter++;
     }
-    TCanvas* canvas = new TCanvas("canvas", "Graph");
     double xAxis[12] {1,2,3,4,5,6,7,8,9,10,11,12};
+    TCanvas* canv1 = new TCanvas("canv1", "Title", 1500, 1000);
     auto graph = new TGraph(12,xAxis, monthTemp);
     graph->SetTitle("Average temperature difference by month");
     graph->GetYaxis()->SetTitle("Average Temperature Difference, Degrees");
     graph->GetXaxis()->SetTitle("Month");
     graph->SetFillColor(40);
     graph->Draw("AB");
+    canv1->SaveAs("DeltaByMonth.pdf");
 
 }
 

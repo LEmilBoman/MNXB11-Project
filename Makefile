@@ -16,16 +16,13 @@ all: main
 #
 # Remove the Example object file when you are done looking at it, it doesn't
 # contribute to the executable!
-main: main.cxx  src/read_example_csv.o
+main: main.cxx  src/read_example_csv.o src/tempDelta.o
 	$(CXX) $(CXXFLAGS) -o $@ $^ $(LDFLAGS)
 
 src/%.o: src/%.cxx
 	$(CXX) $(CXXFLAGS) $^ -c -o $@
 
 winterdays: winterdays.cxx 
-	$(CXX) $(CXXFLAGS) -o $@ $^ $(LDFLAGS)
-
-tempDelta: tempDelta.cxx
 	$(CXX) $(CXXFLAGS) -o $@ $^ $(LDFLAGS)
 
 clean:
