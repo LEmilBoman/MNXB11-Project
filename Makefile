@@ -25,5 +25,8 @@ src/%.o: src/%.cxx
 winterdays: winterdays.cxx 
 	$(CXX) $(CXXFLAGS) -o $@ $^ $(LDFLAGS)
 
+tempDelta: tempDelta.cxx
+	$(CXX) $(CXXFLAGS) -o $@ $^ $(LDFLAGS)
+
 clean:
 	rm -v src/*.o main winterdays
