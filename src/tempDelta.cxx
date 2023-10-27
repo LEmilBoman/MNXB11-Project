@@ -1,7 +1,7 @@
 #include <iostream>
-#include "external/include/lazycsv.hpp"
-#include "external/include/argumentum/argparse.h"
-#include "external/include/date.h"
+#include "../external/include/lazycsv.hpp"
+#include "../external/include/argumentum/argparse.h"
+#include "../external/include/date.h"
 #include <sstream>
 #include <string>
 #include <vector>
@@ -10,6 +10,7 @@
 #include <TGraph.h>
 #include <TCanvas.h>
 #include <TLegend.h>
+#include "../include/tempDelta.h"
 
 std::map<std::string,int> measurnmentsPerDay(std::string file){
     //std::string file = "datasets/smhi-opendata_1_53430_20231007_155558_Lund_clean_cut.csv";
@@ -119,9 +120,9 @@ void PlotData(std::string file){
     graph->Draw("AB");
 }
 
-std::map<date::year_month,double> GetTemperatureDelta(){
-    std::string lundData = "datasets/smhi-opendata_1_53430_20231007_155558_Lund_clean_cut.csv";
-    std::string luleaData = "datasets/smhi-opendata_1_162860_20231007_155220_Lulea_clean_cut.csv";
+std::map<date::year_month,double> GetTemperatureDelta(std::string firstFile, std::string secondFile){
+    std::string lundData = firstFile;
+    std::string luleaData = secondFile;
     std::map<date::year_month,double> lundYmMap = avergeTempearaturePerMonth(lundData);
     std::map<date::year_month,double> luleaYmMap = avergeTempearaturePerMonth(luleaData);
     std::map<date::year_month,double> delta;
@@ -132,8 +133,8 @@ std::map<date::year_month,double> GetTemperatureDelta(){
     return(delta);
 }
 
-std::map<date::month,double> GetAverageTotalDeltaByMonth(){
-    std::map<date::year_month,double> tempDelta = GetTemperatureDelta();
+std::map<date::month,double> GetAverageTotalDeltaByMonth(std::string firstFile, std::string secondFile){
+    std::map<date::year_month,double> tempDelta = GetTemperatureDelta(firstFile,secondFile);
     std::map<date::month,double> totalDeltaByMonth;
     std::map<date::month,int> readingsByMonth;
     for (const auto cell:tempDelta){
@@ -155,8 +156,8 @@ std::map<date::month,double> GetAverageTotalDeltaByMonth(){
     return(deltaByMonth);
 }
 
-void PlotDelta(){
-    std::map<date::year_month,double> delta = GetTemperatureDelta();
+void PlotDelta(std::string firstFile, std::string secondFile){
+    std::map<date::year_month,double> delta = GetTemperatureDelta(firstFile, secondFile);
     int entryAmount = delta.size();
     double monthTemp[entryAmount];
     int counter = 0;
@@ -174,8 +175,8 @@ void PlotDelta(){
     graph->Draw("AB");
 }
 
-void PlotDeltaByMonth(){
-    std::map<date::month,double> deltaByMonth = GetAverageTotalDeltaByMonth();
+void PlotDeltaByMonth(std::string firstFile, std::string secondFile){
+    std::map<date::month,double> deltaByMonth = GetAverageTotalDeltaByMonth(firstFile, secondFile);
      int entryAmount = deltaByMonth.size();
     double monthTemp[entryAmount];
     int counter = 0;
