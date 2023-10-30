@@ -24,6 +24,7 @@ src/%.o: src/%.cxx
 
 winterdays: winterdays.cxx 
 	$(CXX) $(CXXFLAGS) -o $@ $^ $(LDFLAGS)
-
+MinMaxTemp: tempyear.cxx
+	$(CXX) $(CXXFLAGS) -o $@ $^ $(LDFLAGS)
 clean:
 	rm -v src/*.o main winterdays
