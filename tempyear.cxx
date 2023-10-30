@@ -137,16 +137,16 @@ int main(int argc, char *argv[]) {
     "Add a description of your program here!");
   std::vector<std::string> csv_files;
   parameters.add_parameter(csv_files, "-f", "--file")
-    .minargs(3)
+    .minargs(1)
     .metavar("csv files containing temperature data")
     .required(true)
-    .help("need to provide 3 csv file containing temperature data");
+    .help("need to provide 1 csv file containing temperature data");
   std::vector<std::string> city_names;
   parameters.add_parameter(city_names, "-n", "--name")
-    .minargs(3)
+    .minargs(1)
     .metavar("names of the cities where the temperatures in csv files where measured.")
     .required(true)
-    .help("need to provide 3 names of the cities where the temperatures in csv files where measured.");
+    .help("need to provide 1 name1 of the cities where the temperatures in csv files where measured.");
   if (!parser.parse_args(argc, argv)) {
     return 0;
   }
@@ -154,23 +154,23 @@ int main(int argc, char *argv[]) {
   
 
   std::map<int, int> city1_mm_map = MinMax_map(csv_files[0]);
-  std::map<int, int> city2_mm_map = MinMax_map(csv_files[1]);
-  std::map<int, int> city3_mm_map = MinMax_map(csv_files[2]);
+  //std::map<int, int> city2_mm_map = MinMax_map(csv_files[1]);
+  //std::map<int, int> city3_mm_map = MinMax_map(csv_files[2]);
   
   TH1I* city1_hist = new TH1I(city_names[0].c_str(),";date;Number of Days",366,1,366);
  // TH1D* city1_move_avg = new TH1D("Lund move avg",";year;Number of Winterdays",2023,1,2023);
 
-  TH1I* city2_hist = new TH1I(city_names[1].c_str(),";date;Number of days",366,1,366);
+  //TH1I* city2_hist = new TH1I(city_names[1].c_str(),";date;Number of days",366,1,366);
  // TH1D* city2_move_avg = new TH1D("Uppsala move avg",";year;Number of Winterdays",2023,1,2023);
 
-  TH1I* city3_hist = new TH1I(city_names[2].c_str(),";date;Number of days",366,1,366);
+  //TH1I* city3_hist = new TH1I(city_names[2].c_str(),";date;Number of days",366,1,366);
  // TH1D* city3_move_avg = new TH1D("Luleaa move avg",";year;Number of Winterdays",2023,1,2023);
 
   MinMax_hist_fill(city1_hist,city1_mm_map);
-  MinMax_hist_fill(city2_hist,city2_mm_map);
-  MinMax_hist_fill(city3_hist,city3_mm_map);
+  //MinMax_hist_fill(city2_hist,city2_mm_map);
+  //MinMax_hist_fill(city3_hist,city3_mm_map);
 
-  std::vector<TH1I*> histograms = {city3_hist,city2_hist,city1_hist};
+  std::vector<TH1I*> histograms = {city1_hist};
   //std::vector<TH1D*> move_averages ={city1_move_avg,city2_move_avg,city3_move_avg};
   MinMax_hist_draw(histograms);
 
