@@ -1,7 +1,7 @@
 
 <!--unsure what we are going to keep from the old skeleton so i will create this new section to have something to work with -->
 
-## adding external software libraries
+# Adding external software libraries
 
 You can either run our small install script or install the libraries manually. 
 
@@ -18,7 +18,7 @@ create the the build, external and dependencies folder (the dependencies name is
 mkdir build external dependencies
 ```
 
-### installing argumentum
+### Installing argumentum
 Go to dependencies and clone the following (or to go to https://github.com/mmahnic/argumentum to find other adresses if you do not use ssh)
 ```
 git clone git@github.com:mmahnic/argumentum.git
@@ -40,11 +40,6 @@ make install
 Create a folder for external dependencies external/include if it doesnt exist yet. Lazycsv is a header only library consisting of a single header lazycsv.hpp.
 Download the header file from https://github.com/ashtum/lazycsv.git and put the header file into the external/include folder.
 
-### Run the executable
-```
-$./main --file datasets/csv_example.csv
-```
-
 ### Adding Date
 Date is a header only library which is part of the https://github.com/HowardHinnant/date project. If you want a copy of the entire project clone it into the folder /dependencies.
 
@@ -54,6 +49,8 @@ If you made a clone of the entire project: Copy this file (using  cp) into the /
 
 If you did not clone the entire project: Download the header file and place it in the
 /external/include directory.
+
+
 
 ## Cleaning data
 Inside the /datasets directory there is a bash script called "cleanData.sh", which generates cleaned versions of datasets. To use it: Run the script giving the name of each file to be cleaned as input.
@@ -79,91 +76,45 @@ winterdays: Time period treated: Data between 1964 and 2022 is ploted.
                              The relative number of winterdays per for the first two datasets are also calculated, using the third dataset as the baseline.
             Plot Generation: The data is stored in histograms and ploted. The number of winterday histograms with corresponding moving averages are plotted together. 
                              The relative number of winterdays histograms are ploted alone. 
-            
-## pre c++ data processing for MinMaxtemp 
+
+## Pre c++ data processing for MinMaxtemp 
 inside the /dataset directory there is a bash script called "MaxMinPerYear.sh" which takes cleaned csv files as input and output files_MINMAX.csv. create MinMax version of the data you want to use.
-## how to use MinMaxTemp
+## How to use MinMaxTemp
 type the following in root
-'''
+```
 make MinMaxTemp
-'''
+```
 then type 
-'''
+```
 ./MinMaxTemp -f *yourfile*.csv -n *name of city
-'''
+```
 This program takes on datafile at a time and produces a pdf with the data.
 
-# MNXB11-project-template
-# About
-This folder contains a skeleton for your project that you can use as
-inspiration. Once you get started, do feel free to go ahead and replace this
-README file with one representing your project.
+## Data pre-processing for the tempertaure delta sub-project
 
-# Directory structure
-
-The base directory here contains your "main" file, i.e. the C++ file that you
-will be using as your starting point in your project. The code in this file should ideally be short and just make use of the functionality that you've
-prepared in your other translation units. The majority of your code should be placed in  the two folders where you define your translation units, `src/` and `include/`. 
-
-Do remember to add your include guards to your header files, otherwise the compiler will
-get multiple definitions if you end up loading two source files that include the
-same header.
-
-In the template you can find a small translation unit called Example (in [src/Example.cxx](src/Example.cxx) and [include/Example.h](include/Example.h)) that shows some commented reminders of how the syntax for some C++ constructs work. Feel free to use this as a reference to remind yourself of how to do something while working on it but make sure to remove it from your final project version!
-
-There is a demonstration of a toy project you can use for inspiration at [EinarElen/MNXB11-project-demo](https://github.com/EinarElen/MNXB11-project-demo). You should not copy code from this repository. There are some intentional bugs hiding in there, see if you can spot them. 
-
-We have also included three special files in the base of the repository 
-- [.gitignore](.gitignore)
-  - This file contains regular expressions that git tells git that it shouldn't add certain file to your repository. 
-  - Your git repository should generally not contain binary files like object files or executables nor should it contain build artefacts like external libraries. 
-- [.clang-format](.clang-format)
-  - This file holds the configuration for the clang-format tool that you can use to format your code consistently 
-  - It is a good idea to keep your code formatted in a consistent manner, especially when working in groups but doing it manually is a waste of your time. Use a tool for it!
-  ```
-  # Show what the src/Example.cxx file would look like if formatted
-  clang-format src/Example.cxx 
-  # Carry out the formatting in the file directly 
-  clang-format src/Example.cxx -i
-  ```
-  - The `.clang-format` file holds the configuration that clang-format will use to determine how to format your code. By default, it will be formatted according to Google's style but you can pick any that you like from https://clang.llvm.org/docs/ClangFormatStyleOptions.html
-- [rootlogon.C](rootlogon.C)
-  - This file contains code that ROOT will execute automatically whenever you start it, a good place to place general style choices you want to make or anything else you always want to run! 
-  - Be careful to not include anything that depends on your particular machine here (e.g. absolute paths)
-# Building the project
-
-The [datasets](datasets) folder contains open data from SMHI and a README.md with further information about it.
-
-
-We have included a basic Makefile here which should be familiar to you. It follows the same project structure that we have been using in the course. When you add a new translation unit to the project, you have update the dependencies in the Makefile. 
-
-By default, the `all` target will be run which 
-- Compiles any `.cxx` files in the `src/` directory into object files 
-- Compiles `main.cxx` and links with all the object files in `src/`
-
-You can run the `clean` target to remove any object files that have been produced as well as the `main` executable.
-
-## Adding external software libraries
-
-If you want to make use of external software libraries with your project, you
-will always have to tell the tool that builds your project. The Makefile included in this template will pick up any header files in the external/include directory and look for libraries in external/lib and external/lib64 so if you use external as your installation directory, you only need to add the corresponding `-l` flag to the linker.
-
-Here's an illustration of the typical process to add a (CMake based) external library
-``` sh
-# Clone or download the library you want to use 
-git clone https://somerepository.com/alibrary alibrary # The last argument determines what the directory will be called
-
-mkdir build/alibrary -pv # -p will tell mkdir to create the build/ directory if it doesn't already exist 
-# Go into the build directory
-cd build/alibrary 
-# Look up the documentation for the library to find out if there are any additional flags you need for CMake 
-
-# This command tells CMake to configure the build directory based on the source code in the ../../alibrary folder and to install the resulting headers and library files into ../../external
-cmake ../../alibrary -DCMAKE_INSTALL_PREFIX=../../external 
-# Build and install! Use -jN to launch N jobs
-make -j8 install # If you are on an 8-core machine
+First the data sets used in the sub-project need to be cleaned by using the cleanData.sh script located in the datasets directory. As an example when used on the Lund and Lulea smhi datasets
+```
+./cleanData.sh smhi-opendata_1_53430_20231007_155558_Lund.csv smhi-opendata_1_162860_20231007_155220_Lulea.csv
 ```
 
-Make sure to document how to do this for any library you choose to use!
+This would create a new csv file with the same name and _clean decorator at the end.
 
-Have fun!
+Afterwards use the cut_to_size.sh script in order to cut out the relevant time interval from both data files.
+
+```
+./cut_to_size.sh smhi-opendata_1_53430_20231007_155558_Lund_clean.csv smhi-opendata_1_162860_20231007_155220_Lulea_clean.csv
+```
+
+The script will then ask for the start date and the end date for this set of data 1949-01-01 and 2022-12-31 were used respectivly. This will create the new data sets with a _cut decorator at the end. This data sets then should be processed.
+
+## Running the main executable
+
+After running 
+```
+make
+```
+a binary file main is created one can use it in order to read out the example data from csv_example.csv or do data processing for the temperature delta project. In order to run the temperature delta project do
+```
+./main -d datasets/smhi-opendata_1_53430_20231007_155558_Lund_clean_cut.csv datasets/smhi-opendata_1_162860_20231007_155220_Lulea_clean_cut.csv
+```
+This will create 4 different plots, an individual plot for each of the data sets an plot of the delta through out the whole time period and a plot for average temperature difference sorted by month.
