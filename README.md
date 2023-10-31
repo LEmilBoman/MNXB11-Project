@@ -80,6 +80,18 @@ winterdays: Time period treated: Data between 1964 and 2022 is ploted.
             Plot Generation: The data is stored in histograms and ploted. The number of winterday histograms with corresponding moving averages are plotted together. 
                              The relative number of winterdays histograms are ploted alone. 
             
+## pre c++ data processing for MinMaxtemp 
+inside the /dataset directory there is a bash script called "MaxMinPerYear.sh" which takes cleaned csv files as input and output files_MINMAX.csv. create MinMax version of the data you want to use.
+## how to use MinMaxTemp
+type the following in root
+'''
+make MinMaxTemp
+'''
+then type 
+'''
+./MinMaxTemp -f *yourfile*.csv -n *name of city
+'''
+This program takes on datafile at a time and produces a pdf with the data.
 
 # MNXB11-project-template
 # About
