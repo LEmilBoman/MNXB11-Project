@@ -8,7 +8,7 @@ LDFLAGS := -L external/lib64 -largumentum -L/opt/apps/root/lib -lGui -lCore -lIm
 
 .PHONY: all clean
 
-all: main
+all: main winterdays MinMaxTemp
 
 # If you add new source files in the src/ directory, remember to add the
 # corresponding object file as a dependency here so that Make knows that it
@@ -16,7 +16,7 @@ all: main
 #
 # Remove the Example object file when you are done looking at it, it doesn't
 # contribute to the executable!
-main: main.cxx  src/read_example_csv.o src/tempDelta.o
+main: main.cxx src/tempDelta.o
 	$(CXX) $(CXXFLAGS) -o $@ $^ $(LDFLAGS)
 
 src/%.o: src/%.cxx

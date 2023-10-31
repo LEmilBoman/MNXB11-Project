@@ -1,5 +1,4 @@
 #include <iostream>
-#include "read_example_csv.hpp"
 #include <lazycsv.hpp>
 #include <argumentum/argparse.h>
 #include <date.h>
