@@ -30,37 +30,37 @@ std::map<int, int> MinMax_map(std::string csv_file){
         tempint=stoi(tempd.substr(2,3));
     }
     if(tempd.substr(0,2)=="02"){
-        tempint=(31+ stoi(tempd.substr(2,3)));
+        tempint=(31+ stoi(tempd.substr(2,2)));
     }
     if(tempd.substr(0,2)=="03"){
-        tempint=(60+stoi(tempd.substr(2,3)));
+        tempint=(60+stoi(tempd.substr(2,2)));
     }
     if(tempd.substr(0,2)=="04"){
-        tempint=(91+stoi(tempd.substr(2,3)));
+        tempint=(91+stoi(tempd.substr(2,2)));
     }    
     if(tempd.substr(0,2)=="05"){
-        tempint=(121+stoi(tempd.substr(2,3)));
+        tempint=(121+stoi(tempd.substr(2,2)));
     }
     if(tempd.substr(0,2)=="06"){
-        tempint=(152+stoi(tempd.substr(2,3)));
+        tempint=(152+stoi(tempd.substr(2,2)));
     } 
     if(tempd.substr(0,2)=="07"){
-        tempint=(182+stoi(tempd.substr(2,3)));
+        tempint=(182+stoi(tempd.substr(2,2)));
     }
     if(tempd.substr(0,2)=="08"){
-        tempint=(213+stoi(tempd.substr(2,3)));
+        tempint=(213+stoi(tempd.substr(2,2)));
     }
     if(tempd.substr(0,2)=="09"){
-        tempint=(244+stoi(tempd.substr(2,3)));
+        tempint=(244+stoi(tempd.substr(2,2)));
     }
     if(tempd.substr(0,2)=="10"){
-        tempint=(274+stoi(tempd.substr(2,3)));
+        tempint=(274+stoi(tempd.substr(2,2)));
     }
     if(tempd.substr(0,2)=="11"){
-        tempint=(305+stoi(tempd.substr(2,3)));
+        tempint=(305+stoi(tempd.substr(2,2)));
     }
     if(tempd.substr(0,2)=="12"){
-        tempint=(335+stoi(tempd.substr(2,3)));
+        tempint=(335+stoi(tempd.substr(2,2)));
     }
     MinMaxMap[tempint] += 1;  
   }

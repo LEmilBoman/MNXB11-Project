@@ -16,6 +16,6 @@ for list in "${listDatasets[@]}"; do
   #go through each year individually and find max and min temperature.
   for year in "${years[@]}"; do
     temp=$(grep "$year" $list|cut -d "," -f3|sort -g|sed -n '1p; $p')
-    grep "$year" $list|grep -w -e "$temp" >> ${list/.csv/_MaxMinTemp.csv}
+    grep "$year" $list|grep -w -e "$temp"|cut -c 6-| sed "s/-//" >> ${list/.csv/_MaxMinTemp.csv}
   done
 done
