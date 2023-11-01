@@ -65,24 +65,47 @@ The script extracts the first 3 columns of each data line. The line syntax is: d
 
 The script changes the ";"-seperation to ","-separation.
 
-##Data processing
+## Pre C++ processing for Compare number of winter days per year in Lund, Uppsala, and Luleå.
+Inside the /dataset directory there is a bash script called "negTempDays.sh", which extracts all days with any negative temperatures from cleaned datasets, starting from 1964.
 
-## Pre c++ processing for the subproject "Compare number of winter days per year in Lund, Uppsala, and Luleå".
-Inside the /dataset directory there is a bash script called "negTempDays.sh", which extracts all days with any negative temperatures from cleaned datasets, starting from 1964. To use it: Run the script giving the name of each cleaned dataset file as input. The script generates a new csv dataset for each input with the same name as the input file, but with the addition "_neg" before .csv .
+To use it: Run the script giving the name of each cleaned dataset file as input. The script generates a new csv dataset for each input with the same name as the input file, but with the addition "_neg" before .csv .
 
-#C++ data processing and plot generation
+```
+./negTempDays.sh *first file_clean.csv* *second file_clean.csv* *etc...*
+```
 
 ## C++ data processing and plot generation for the subproject "Compare number of winter days per year in Lund, Uppsala, and Luleå".
-winterdays: Time period treated: Data between 1964 and 2022 is ploted.
-            Space-Separated CLI: The names (with paths) for three csv files containing temperature data, and the three names that should be used as labels for the datasets.
-                                  NOTE: the datasets should be given in number of winterdays order, beginning with the set with the lowest number of winterdays per year. 
-                                  This is in order for larger histograms not to cover smaller ones.
-                                  NOTE: The order of the data files and the order of the corresponding names must be the same.
-            Data Processing: The number of winterdays per year is calculated (the condition for a winterday is that the average temperature should be below zero C).
-                             The simple moving average is calculated using centralized 5 year intervalls. 
-                             The relative number of winterdays per for the first two datasets are also calculated, using the third dataset as the baseline.
-            Plot Generation: The data is stored in histograms and ploted. The number of winterday histograms with corresponding moving averages are plotted together. 
-                             The relative number of winterdays histograms are ploted alone. 
+winterdays is used in order to 
+
+Time period treated: Data between 1964 and 2022 is ploted.
+
+Space-Separated CLI: The names (with paths) for three csv files containing temperature data, and the three names that should be used as labels for the datasets. The csv files needs to be ones obtained using negTempDays.sh (see above).
+
+NOTE: the flag -f is used to indicate input files, while the flag -n is used to indicate name inputs (see example below).
+            
+NOTE: the datasets should be given in number of winterdays order, beginning with the set with the lowest number of winterdays per year. This is in order for larger histograms not to cover smaller ones.
+
+NOTE: The order of the data files and the order of the corresponding names must be the same.
+
+```
+./winterdays -f *path/first file* *path/second file* *path/third file* -n *first_name* *second_name* *third_name*
+```
+
+
+###Data Processing: 
+
+The number of winterdays per year is calculated (the condition for a winterday is that the average temperature should be below zero C).
+                            
+The simple moving average is calculated using centralized 5 year intervalls. 
+
+The relative number of winterdays per for the first two datasets are also calculated, using the third dataset as the baseline.
+
+
+###Plot Generation: 
+
+The data is stored in histograms and ploted. The number of winterday histograms with corresponding moving averages are plotted together. 
+
+The relative number of winterdays histograms are ploted alone. 
 
 ## Pre c++ data processing for MinMaxtemp 
 inside the /dataset directory there is a bash script called "MaxMinPerYear.sh" which takes cleaned csv files as input and output files_MINMAX.csv. create MinMax version of the data you want to use.
