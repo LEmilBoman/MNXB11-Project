@@ -87,10 +87,31 @@ NOTE: the datasets should be given in number of winterdays order, beginning with
 
 NOTE: The order of the data files and the order of the corresponding names must be the same.
 
+In order to compile winterdays.cxx to create winterdays use:
+
+```
+make
+```
+
+or 
+
+```
+make winterdays
+```
+
+Example for running winterdays:
+
 ```
 ./winterdays -f *path/first file* *path/second file* *path/third file* -n *first_name* *second_name* *third_name*
 ```
 
+For this project 
+
+```
+./winterdays -f datasets/smhi-opendata_1_53430_20231007_155558_Lund_clean_neg.csv datasets/smhi-opendata_1_97530_20231007_155803_Uppsala_clean_neg.csv datasets/smhi-opendata_1_162860_20231007_155220_Lulea_clean_neg.csv -n "Lund" "Uppsala" "Luleaa"
+```
+
+was used.
 
 ### Data Processing: 
 
