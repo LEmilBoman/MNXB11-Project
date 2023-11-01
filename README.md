@@ -75,7 +75,7 @@ To use it: Run the script giving the name of each cleaned dataset file as input.
 ```
 
 ## C++ data processing and plot generation for the subproject "Compare number of winter days per year in Lund, Uppsala, and Luleå".
-winterdays is used in order to 
+winterdays is used in order to compute the number of winter days, and make histogram plots, for the datasets provided as input. In addition the relative number of winterdays, using the third dataset as reference, is also treated. 
 
 Time period treated: Data between 1964 and 2022 is ploted.
 
@@ -92,7 +92,7 @@ NOTE: The order of the data files and the order of the corresponding names must 
 ```
 
 
-###Data Processing: 
+### Data Processing: 
 
 The number of winterdays per year is calculated (the condition for a winterday is that the average temperature should be below zero C).
                             
@@ -101,7 +101,7 @@ The simple moving average is calculated using centralized 5 year intervalls.
 The relative number of winterdays per for the first two datasets are also calculated, using the third dataset as the baseline.
 
 
-###Plot Generation: 
+### Plot Generation: 
 
 The data is stored in histograms and ploted. The number of winterday histograms with corresponding moving averages are plotted together. 
 
