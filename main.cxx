@@ -66,7 +66,7 @@ int main(int argc, char *argv[]) {
     PlotData((*deltaFiles)[0]);
     PlotData((*deltaFiles)[1]);
     PlotDelta((*deltaFiles)[0], (*deltaFiles)[1]);
-    PlotDelta((*deltaFiles)[0], (*deltaFiles)[1]);
+    PlotDeltaByMonth((*deltaFiles)[0], (*deltaFiles)[1]);
   }
 
   if (csv_file){
